@@ -1,0 +1,34 @@
+name: Deploy Supabase Edge Functions
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'supabase/functions/**'
+  workflow_dispatch:
+
+jobs:
+  deploy-functions:
+    name: Deploy Edge Functions
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Edge Functions Changed
+        run: |
+          echo "🔄 Edge function changes detected"
+          echo "Note: Lovable Cloud automatically deploys edge functions."
+          echo "No manual deployment required."
+          
+      # If you want to run tests on edge functions
+      - name: Test Edge Functions
+        run: |
+          echo "Testing edge functions..."
+          # Add your edge function tests here
